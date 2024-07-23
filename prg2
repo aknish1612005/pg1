@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Array Functions</title>
+</head>
+<body>
+<?php
+function displayArray($array) {
+echo "<ul>";
+foreach ($array as $value) {
+echo "<li>$value</li>";
+}
+echo "</ul>";
+}
+function findLargest($array) {
+$largest = $array[0];
+foreach ($array as $value) {
+if ($value > $largest) {
+$largest = $value;
+}
+}
+return $largest;
+}
+if (isset($_POST['submit'])) {
+$numbers = explode(",", $_POST['numbers']);
+echo "<h2>Original Array:</h2>";
+displayArray($numbers);
+echo "<h2>Sorted Array:</h2>";
+sort($numbers);
+displayArray($numbers);
+echo "<h2>Largest Value:</h2>";
+echo findLargest($numbers);
+} else {
+?>
+<h1>Enter Numbers</h1>
+<form method="post" action="">
+<label for="numbers">Enter numbers separated by commas:</label><br>
+<input type="text" id="numbers" name="numbers"><br><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+<?php
+}
+?>
+</body>
+</html>
